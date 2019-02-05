@@ -167,7 +167,7 @@ for dagnummer in days:
                 rooms[roomname].append(newobj)
     
     obj={"version": version, "date": days[dagnummer], "rooms": rooms}
-    with open("schedule/%d.json" % i,"w") as f:
+    with open("schedule/day/%d.json" % i,"w") as f:
        f.write(json.dumps(obj))
        f.close()
     i+=1
