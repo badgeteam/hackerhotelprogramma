@@ -143,7 +143,8 @@ for ev in allev:
   evid=ev['eventid']
   cd[evid]=ev
 
-realdays=[days[x] for x in days]
+realdays=[x for x in days]
+realdays={str(x):days[realdays[x]] for x in range(0,len(realdays))}
 obj={"version": version, "title": eventtitle, "days": realdays}
 with open("schedule/schedule.json","w") as f:
    f.write(json.dumps(obj))
