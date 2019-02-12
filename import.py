@@ -82,6 +82,7 @@ def eventstoev(day,events,evtype):
         newev['realdatetimestart']=days[newev['day']]+' '+newev['start']+':00'
         newev['realdatetimeend']=(days[newev['day']+1] if newev['end'].startswith('0') else  days[newev['day']])+' '+newev['end']+':00'
         newev['timestamp']=int(datetime.datetime.strptime(newev['realdatetimestart'], '%Y-%m-%d %H:%M:%S').strftime("%s"))
+        newev['end']=int(datetime.datetime.strptime(newev['realdatetimeend'], '%Y-%m-%d %H:%M:%S').strftime("%s"))
         newev['duration'] = "{:0>8}".format(str(datetime.datetime.strptime(newev['realdatetimeend'], FMT) - datetime.datetime.strptime(newev['realdatetimestart'], FMT)))[0:5]
         newev['subtitle']=""
         newev['language']=""
@@ -163,7 +164,7 @@ for dagnummer in days:
         for eventid in cd:
             if cd[eventid]['day']==dagnummer and cd[eventid]['room']==roomnum:
                 newobj={}
-                for x in ['start','duration','title','guid']:
+                for x in ['start','duration','title','guid','timestamp','end','type']:
                   newobj[x]=cd[eventid][x]
                 rooms[roomname].append(newobj)
     
